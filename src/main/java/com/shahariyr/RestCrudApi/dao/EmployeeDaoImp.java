@@ -17,6 +17,8 @@ public class EmployeeDaoImp implements EmployeeDAO {
 		this.entityManager = entityManager;
 	}
 
+	
+	// method for find all employee.
 	@Override
 	public List<Employee> findall() {
 
@@ -31,4 +33,43 @@ public class EmployeeDaoImp implements EmployeeDAO {
 		return employees;
 	}
 
+	
+	//method for find employee by their id..
+	@Override
+	public Employee findById(int theId) {
+		//take the id
+		
+		Employee theEmployee = entityManager.find(Employee.class, theId);
+		
+		return theEmployee;
+	}
+
+	
+	// method for save the employee..
+	@Override
+	public Employee savEmployee(Employee thEmployee) {
+		Employee dbEmployee = entityManager.merge(thEmployee);
+		return dbEmployee;
+	}
+
+	
+	// method for delete the employee
+	@Override
+	public void deleteEmployee(int theId) {
+		
+		Employee theEmployee = entityManager.find(Employee.class, theId);
+		
+		entityManager.remove(theEmployee);
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
