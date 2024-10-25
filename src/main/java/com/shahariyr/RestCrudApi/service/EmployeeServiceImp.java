@@ -26,10 +26,9 @@ public class EmployeeServiceImp implements EmployeeService{
 		return employeeDAO.findall();
 	}
 
-
+	// No Transactional annotation because this method didn't modify the database.
 	@Override
-	public Employee findById(int theId) {
-		
+	public Employee findById(int theId) {		
 		return employeeDAO.findById(theId);
 	}
 
