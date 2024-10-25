@@ -26,12 +26,14 @@ public class EmployeeDaoRestController {
 		this.employeeService = thEmployeeService;
 	}
 
+	//find all employee
 	@GetMapping("/employees")
 	public List<Employee> findEmployees() {
 
 		return employeeService.findall();
 	}
 
+	//find specific employee
 	@GetMapping("/employees/{employeeID}") // "{employeeID}" and after @pathvariable "employeeID" must be same
 										
 	public Employee getSingleEmployee(@PathVariable int employeeID) {
@@ -44,5 +46,7 @@ public class EmployeeDaoRestController {
 
 		return theEmployee;
 	}
+	
+	
 
 }
