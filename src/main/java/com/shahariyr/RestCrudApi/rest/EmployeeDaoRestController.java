@@ -3,6 +3,8 @@ package com.shahariyr.RestCrudApi.rest;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.shahariyr.RestCrudApi.entity.Employee;
@@ -25,6 +27,8 @@ public class EmployeeDaoRestController {
 	public EmployeeDaoRestController(EmployeeService thEmployeeService) {
 		this.employeeService = thEmployeeService;
 	}
+	
+	
 
 	//find all employee
 	@GetMapping("/employees")
@@ -32,6 +36,8 @@ public class EmployeeDaoRestController {
 
 		return employeeService.findall();
 	}
+	
+	
 
 	//find specific employee
 	@GetMapping("/employees/{employeeID}") // "{employeeID}" and after @pathvariable "employeeID" must be same
@@ -47,6 +53,30 @@ public class EmployeeDaoRestController {
 		return theEmployee;
 	}
 	
+	@PostMapping("/employees")
+	public Employee addEmployee(@RequestBody Employee thEmployee) {
+		
+		
+		thEmployee.setId(0);
+		Employee theEmployee = employeeService.savEmployee(thEmployee);
+		return theEmployee;
+		
+	}
+	
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
