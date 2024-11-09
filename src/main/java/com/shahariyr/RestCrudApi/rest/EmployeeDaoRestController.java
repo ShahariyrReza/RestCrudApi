@@ -40,7 +40,6 @@ public class EmployeeDaoRestController {
 
 	// find specific employee
 	@GetMapping("/employees/{employeeID}") // "{employeeID}" and after @pathvariable "employeeID" must be same
-
 	public Employee getSingleEmployee(@PathVariable int employeeID) {
 
 		Employee theEmployee = employeeService.findById(employeeID);
@@ -55,7 +54,7 @@ public class EmployeeDaoRestController {
 	@PostMapping("/employees")
 	public Employee addEmployee(@RequestBody Employee thEmployee) {
 
-		thEmployee.setId(0);
+		thEmployee.setId(0); // why??
 		Employee theEmployee = employeeService.savEmployee(thEmployee);
 		return theEmployee;
 
