@@ -21,7 +21,6 @@ public class EmployeeDaoImp implements EmployeeDAO {
 	// method for find all employee.
 	@Override
 	public List<Employee> findall() {
-
 		
 		// Create Query
 		TypedQuery<Employee> theQuery = entityManager.createQuery(" from Employee", Employee.class); // basic jpa query. mukustw kore rakhte hoe ata...
