@@ -1,6 +1,7 @@
 package com.shahariyr.RestCrudApi.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,9 +41,9 @@ public class EmployeeDaoRestController {
 
 	// find specific employee
 	@GetMapping("/employees/{employeeID}") // "{employeeID}" and after @pathvariable "employeeID" must be same
-	public Employee getSingleEmployee(@PathVariable int employeeID) {
+	public  Optional<Employee> getSingleEmployee(@PathVariable int employeeID) {
 
-		Employee theEmployee = employeeService.findById(employeeID);
+		Optional<Employee> theEmployee = employeeService.findById(employeeID);
 
 		if (theEmployee == null) {
 			throw new RuntimeException("Employee not found which ID is :" + employeeID);
@@ -72,7 +73,7 @@ public class EmployeeDaoRestController {
 	@DeleteMapping("/employees/{employeeId}")
 	public String deleteEmployee(@PathVariable int employeeId) {
 
-		Employee tempEmployee = employeeService.findById(employeeId);
+		Optional<Employee> tempEmployee = employeeService.findById(employeeId);
 
 		if (tempEmployee == null) {
 			throw new RuntimeException("Employee id not found..." + employeeId);
