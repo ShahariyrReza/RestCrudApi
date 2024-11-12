@@ -1,7 +1,6 @@
 package com.shahariyr.RestCrudApi.rest;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +23,7 @@ public class EmployeeDaoRestController {
 	 * 
 	 * public EmployeeDaoRestController(EmployeeDAO employeeDAO) { this.employeeDAO
 	 * = employeeDAO; }
+	 * 
 	 */
 
 	private EmployeeService employeeService;
@@ -36,14 +36,28 @@ public class EmployeeDaoRestController {
 	@GetMapping("/employees")
 	public List<Employee> findEmployees() {
 
-		return employeeService.findall();
+		return employeeService.findAll();
 	}
+
+	/*
+	 * // find specific employee
+	 * 
+	 * @GetMapping("/employees/{employeeID}") // "{employeeID}" and
+	 * after @pathvariable "employeeID" must be same public Employee
+	 * getSingleEmployee(@PathVariable int employeeID) {
+	 * 
+	 * if (theEmployee == null) { throw new
+	 * RuntimeException("Employee not found which ID is :" + employeeID); } return
+	 * employeeService.findById(employeeID); }
+	 * 
+	 */
 
 	// find specific employee
 	@GetMapping("/employees/{employeeID}") // "{employeeID}" and after @pathvariable "employeeID" must be same
-	public  Optional<Employee> getSingleEmployee(@PathVariable int employeeID) {
 
-		Optional<Employee> theEmployee = employeeService.findById(employeeID);
+	public Employee getSingleEmployee(@PathVariable int employeeID) {
+
+		Employee theEmployee = employeeService.findById(employeeID);
 
 		if (theEmployee == null) {
 			throw new RuntimeException("Employee not found which ID is :" + employeeID);
@@ -72,13 +86,6 @@ public class EmployeeDaoRestController {
 
 	@DeleteMapping("/employees/{employeeId}")
 	public String deleteEmployee(@PathVariable int employeeId) {
-
-		Optional<Employee> tempEmployee = employeeService.findById(employeeId);
-
-		if (tempEmployee == null) {
-			throw new RuntimeException("Employee id not found..." + employeeId);
-		}
-
 		employeeService.deleteEmployee(employeeId);
 
 		return "Employee is deleted of id :" + employeeId;
