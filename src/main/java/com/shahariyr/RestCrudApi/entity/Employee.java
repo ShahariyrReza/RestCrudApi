@@ -83,7 +83,4 @@ public class Employee {
 		return "Employee [id=" + id + ", firstname=" + firstname + ", lastName=" + lastName + ", email=" + email + "]";
 	}
 
-	
-	
-
 }
