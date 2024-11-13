@@ -1,24 +1,21 @@
 package com.shahariyr.RestCrudApi.service;
+
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 import com.shahariyr.RestCrudApi.Dao.EmployeeRepo;
 import com.shahariyr.RestCrudApi.entity.Employee;
 
 @Service
-public class EmployeeServiceImp implements EmployeeService{
+public class EmployeeServiceImp implements EmployeeService {
 
-	
-	
-	//Constructor Injection of employeeRepo
-	private EmployeeRepo employeeRepo; //EmployeeRepo="employeeRepo". always used employeeRepo.
-	
+	// Constructor Injection of employeeRepo
+	private EmployeeRepo employeeRepo; // EmployeeRepo="employeeRepo". always used employeeRepo.
+
 	public EmployeeServiceImp(EmployeeRepo theEmployeeRepo) {
 		this.employeeRepo = theEmployeeRepo;
 	}
-	
-	
+
 	@Override
 	public List<Employee> findAll() {
 		return employeeRepo.findAll();
@@ -44,19 +41,17 @@ public class EmployeeServiceImp implements EmployeeService{
 
 	}
 
-
 	@Override
 	public Employee savEmployee(Employee thEmployee) {
-		
-		return employeeRepo.save(thEmployee);
-	}
 
+		Employee savedEmployee = employeeRepo.save(thEmployee);
+		return savedEmployee;
+	}
 
 	@Override
 	public void deleteEmployee(int theId) {
 		employeeRepo.deleteById(theId);
-		
+
 	}
 
-	
 }
